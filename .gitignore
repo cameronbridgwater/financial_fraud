@@ -1,2 +1,3 @@
-caishen_bank_transactions.csv
-cleaned_caishen_bank_transactions.csv
+bank_transactions.csv
+cleaned_all_types_bank_transactions.csv
+cleaned_only_fraud_types_bank_transactions.csv
