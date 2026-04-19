@@ -74,13 +74,13 @@ These files represent the main stages of the project workflow, from exploration 
     - `step1-explore.ipynb` — EDA and pattern discovery  
     - `step2-transform.ipynb` — Cleaning and feature engineering  
     - `step3-model.ipynb` — Model training and evaluation  
-    - `step4-report.ipynb` — Final report  
   - **data/**
     - `raw_transaction_data.csv`
     - `cleaned_transaction_data.csv`
     - `fraud_only_data.csv`
-  - **docs/**
-    - visualizations, charts, and final write-up
+  - **report/**
+    - `step4-report.ipynb` — Final report  
+
 
 ## 🛠️ Tech Stack
 
