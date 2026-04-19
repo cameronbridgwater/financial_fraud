@@ -122,7 +122,3 @@ These files represent the main stages of the project workflow, from exploration 
 **Built by Cameron Bridgwater | The Knowledge House Data Analytics Fellow | NYC | April 2026**
 
 ***
-
-If you want, I can also make this:
-1. **more concise and GitHub-ready**, or  
-2. **more like a polished portfolio README** with stronger project language and a completed “best model” section.
