@@ -1,110 +1,128 @@
-# Fraud Detection Project
+Absolutely — here’s a **more polished README** in the same style, with emojis, bolding, sections, and a friendlier project-summary feel.
 
-This project analyzes transaction data to explore patterns associated with fraudulent activity and build predictive models that can distinguish fraud from non-fraud transactions.
+***
 
-## Project Overview
+# Fraud Detection Analysis
 
-The workflow is organized into four steps:
+Analyzes transaction data to detect fraudulent activity using exploratory analysis and classification models. **Best-performing model: TBD**.
 
-1. **Exploration** — inspect the data, identify patterns, and understand feature distributions.
-2. **Cleaning and preprocessing** — remove or transform features, engineer new variables, and prepare modeling datasets.
-3. **Modeling** — train and tune classification models, then compare their performance.
-4. **Reporting** — summarize findings and present the results clearly.
+## 🎯 Project Overview
 
-The project focuses on a highly imbalanced classification problem, so accuracy alone is not a reliable metric. Precision, recall, F1 score, and ROC AUC are more informative for evaluating performance.
+Built a fraud detection workflow to understand which transaction features are most useful for separating fraud from non-fraud cases. **Key insights:**
+- **Fraud is highly imbalanced**: only a very small share of transactions are fraudulent.
+- **Transaction type matters**: fraud appears to cluster in specific transaction types.
+- **Balance variables are important**: several account balance features show strong relationships with fraud.
+- **Extreme values may be meaningful**: outliers are not always noise in this dataset.
 
-## Data
+## 📊 Data Overview
 
-The dataset contains transaction-level information, including:
+**Source**: Transaction-level fraud dataset
 
-- Transaction type.
-- Transaction amount.
-- Original and destination account balances.
-- Flags and metadata related to fraud.
+**Target**: `isFraud` = 1 for fraudulent transactions, 0 otherwise
 
-Some fields behave like identifiers and are not especially useful for prediction. Other fields, especially balance-related variables, appear to contain stronger signal.
+### 📁 Dataset Files
 
-## Key Findings from EDA
+- **step1-explore.ipynb** — Exploratory data analysis and visualization.
+- **step2-transform.ipynb** — Data cleaning, feature engineering, and preprocessing.
+- **step3-model.ipynb** — Classification modeling and evaluation.
+- **step4-report.ipynb** — Final summary and reporting.
 
-Exploratory analysis suggests several important patterns:
+These files represent the main stages of the project workflow, from exploration through modeling and reporting.
 
-- Fraud is rare compared with non-fraud cases.
-- Certain transaction types appear more associated with fraud than others.
-- Transaction amount and balance-related variables show meaningful variation.
-- Several numeric features are strongly skewed.
-- Some balance variables are highly correlated with one another.
+### 🎯 Key Features (Top Impact)
 
-Because the fraud class is so small, the project emphasizes finding features and models that can better separate the two classes rather than relying on raw accuracy.
+| Feature | Data Type | Description | Notes |
+|---------|-----------|-------------|-------|
+| **type** | Categorical | Transaction type | Important for fraud patterns |
+| **amount** | Numeric | Transaction amount | Higher values may be informative |
+| **oldbalanceOrg** | Numeric | Sender balance before transaction | Strongly related to fraud behavior |
+| **newbalanceOrig** | Numeric | Sender balance after transaction | Often highly correlated with other balance vars |
+| **oldbalanceDest** | Numeric | Receiver balance before transaction | Useful for balance-change patterns |
+| **newbalanceDest** | Numeric | Receiver balance after transaction | Useful for balance-change patterns |
 
-## Feature Engineering and Cleaning
+### 🔧 Preprocessing Applied
+- **Feature selection**: Dropped identifier-like columns such as `nameOrig` and `nameDest`.
+- **Encoding**: One-hot encoding for `type`.
+- **Feature engineering**: Created balance-difference and time-based features.
+- **Correlation review**: Checked highly correlated balance variables for multicollinearity.
+- **Dataset variants**: Built both all-transaction and fraud-focused versions.
 
-The preprocessing step focuses on keeping features that appear useful and simplifying those that are redundant.
+## 🤖 Models & Performance
 
-Typical actions include:
+| Model | Purpose | Status |
+|-------|---------|--------|
+| **Logistic Regression** | Baseline linear classifier | Good for interpretability |
+| **Random Forest** | Nonlinear tree-based model | Captures interactions |
+| **XGBoost** | Boosted tree model | Strong tabular-data performance |
 
-- Dropping identifier-like columns.
-- Encoding transaction type.
-- Creating engineered features from balance changes.
-- Considering whether highly correlated balance variables should be reduced.
-- Keeping extreme values when they appear meaningful to the fraud pattern.
+**Evaluation focus:** precision, recall, F1 score, and ROC AUC.
 
-The dataset is also split into different versions for comparison, including an all-transactions version and a fraud-focused version that keeps only the transaction types where fraud appears.
+## 📈 Key Insights
 
-## Modeling Approach
+| Finding | Interpretation |
+|---------|----------------|
+| **Fraud is rare** | Accuracy alone is not enough |
+| **Some transaction types are more suspicious** | Type is likely a strong predictor |
+| **Balance features are highly correlated** | Multicollinearity may matter for linear models |
+| **Extreme transaction amounts matter** | Large values may help identify fraud |
+| **Fraud-focused subsets can be useful** | TRANSFER and CASH_OUT may contain the clearest signal |
 
-Several classification models are compared so the project can balance interpretability and predictive power.
+## 📁 Project Structure
 
-Models used include:
+- **fraud-detection-project/**
+  - **code/**
+    - `step1-explore.ipynb` — EDA and pattern discovery  
+    - `step2-transform.ipynb` — Cleaning and feature engineering  
+    - `step3-model.ipynb` — Model training and evaluation  
+    - `step4-report.ipynb` — Final report  
+  - **data/**
+    - `raw_transaction_data.csv`
+    - `cleaned_transaction_data.csv`
+    - `fraud_only_data.csv`
+  - **docs/**
+    - visualizations, charts, and final write-up
 
-- Logistic Regression.
-- Random Forest.
-- XGBoost.
+## 🛠️ Tech Stack
 
-The modeling pipeline includes preprocessing steps such as scaling numeric features and one-hot encoding categorical features where needed. Hyperparameter tuning is used to improve each model and make comparisons more meaningful.
+- **pandas** — Data manipulation  
+- **scikit-learn** — Preprocessing and classification models  
+- **xgboost** — Gradient boosting classifier  
+- **seaborn** — Visualization  
+- **matplotlib** — Charts  
+- **numpy** — Numerical operations  
+- **jupyter** — Notebook workflow  
 
-## Evaluation Strategy
+### 📦 Requirements
 
-Because the data is imbalanced, the project uses metrics that better reflect fraud detection performance:
+- **pandas**
+- **scikit-learn**
+- **xgboost**
+- **seaborn**
+- **matplotlib**
+- **numpy**
+- **jupyter**
 
-- Precision.
-- Recall.
-- F1 score.
-- ROC AUC.
+## 🎯 Modeling Notes
 
-These metrics help show whether a model can correctly identify fraud without producing too many false alarms. Accuracy is reported only as a secondary metric.
+1. **Use recall carefully** — catching fraud matters, but false positives also matter.
+2. **Do not rely on accuracy** — the dataset is too imbalanced.
+3. **Compare linear and tree-based models** — they handle redundancy differently.
+4. **Keep feature engineering practical** — balance changes and transaction type are likely more useful than identifiers.
 
-## Interpretation Notes
+## 📈 Next Steps
 
-One important modeling question is whether multicollinearity matters here. For classification, it matters most when using linear models such as logistic regression, where correlated features can make coefficient estimates unstable and harder to interpret. For tree-based models, correlated features are usually less of a problem for prediction, though they can still make feature importance harder to read.
+- [ ] Tune model thresholds for better fraud recall.
+- [ ] Compare feature importance across models.
+- [ ] Test whether dropping correlated features improves interpretability.
+- [ ] Add confusion matrix and ROC visuals.
+- [ ] Finalize the reporting notebook with best model results.
 
-That means correlated balance variables do not automatically need to be removed. Whether to keep or drop them depends on the model and whether the goal is prediction, interpretation, or both.
+***
 
-## Repository Structure
+**Built by Cameron Bridgwater | The Knowledge House Data Analytics Fellow | NYC | April 2026**
 
-```text
-README.md
-step1-explore.ipynb
-step2-transform.ipynb
-step3-model.ipynb
-step4-report.ipynb
-01eda.ipynb
-02clean.ipynb
-logistic_regression.ipynb
-random_forests.ipynb
-naive_bayes.ipynb
-hyperparameters.ipynb
-hyperparameters_solutions.ipynb
-```
+***
 
-## How to Use
-
-1. Start with the exploration notebook to understand the dataset.
-2. Move to the cleaning notebook to prepare features.
-3. Run the modeling notebook to train and compare classifiers.
-4. Review the report notebook for the final summary.
-
-## Project Goal
-
-The goal is to build a fraud detection workflow that is clear, reproducible, and grounded in the data. The project aims to identify which features matter most, how preprocessing choices affect results, and which models perform best on an imbalanced fraud classification task.
-
-If you want, I can also turn this into a more polished GitHub README with badges, setup instructions, and a stronger project summary.
+If you want, I can also make this:
+1. **more concise and GitHub-ready**, or  
+2. **more like a polished portfolio README** with stronger project language and a completed “best model” section.
