@@ -1,7 +1,3 @@
-Absolutely — here’s a **more polished README** in the same style, with emojis, bolding, sections, and a friendlier project-summary feel.
-
-***
-
 # Fraud Detection Analysis
 
 Analyzes transaction data to detect fraudulent activity using exploratory analysis and classification models. **Best-performing model: TBD**.
