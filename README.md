@@ -1,6 +1,6 @@
 # Fraud Detection Analysis
 
-Analyzes transaction data to detect fraudulent activity using exploratory analysis and classification models. **Best-performing model: XGBoost**.
+Analyzes transaction data to detect fraudulent activity using exploratory analysis and classification models. **Best-performing model: XGBoost (based on F1 and ROC AUC).**
 
 ## 🎯 Project Overview
 
@@ -76,7 +76,7 @@ These files represent the main stages of the project workflow, from exploration 
     - `cleaned_transaction_data.csv`
     - `fraud_only_data.csv`
   - **report/**
-    - `step4-report.ipynb` — Final report  
+    - `step4-report.ipynb` — Final report
 
 ## 🛠️ Tech Stack
 
