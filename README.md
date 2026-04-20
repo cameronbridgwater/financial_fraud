@@ -1,6 +1,6 @@
 # Fraud Detection Analysis
 
-Analyzes transaction data to detect fraudulent activity using exploratory analysis and classification models. **Best-performing model: TBD**.
+Analyzes transaction data to detect fraudulent activity using exploratory analysis and classification models. **Best-performing model: XGBoost**.
 
 ## 🎯 Project Overview
 
@@ -37,6 +37,7 @@ These files represent the main stages of the project workflow, from exploration 
 | **newbalanceDest** | Numeric | Receiver balance after transaction | Useful for balance-change patterns |
 
 ### 🔧 Preprocessing Applied
+
 - **Feature selection**: Dropped identifier-like columns such as `nameOrig` and `nameDest`.
 - **Encoding**: One-hot encoding for `type`.
 - **Feature engineering**: Created balance-difference and time-based features.
@@ -49,7 +50,7 @@ These files represent the main stages of the project workflow, from exploration 
 |-------|---------|--------|
 | **Logistic Regression** | Baseline linear classifier | Good for interpretability |
 | **Random Forest** | Nonlinear tree-based model | Captures interactions |
-| **XGBoost** | Boosted tree model | Strong tabular-data performance |
+| **XGBoost** | Boosted tree model | **Best performing model** |
 
 **Evaluation focus:** precision, recall, F1 score, and ROC AUC.
 
@@ -76,7 +77,6 @@ These files represent the main stages of the project workflow, from exploration 
     - `fraud_only_data.csv`
   - **report/**
     - `step4-report.ipynb` — Final report  
-
 
 ## 🛠️ Tech Stack
 
@@ -113,8 +113,6 @@ These files represent the main stages of the project workflow, from exploration 
 - [ ] Add confusion matrix and ROC visuals.
 - [ ] Finalize the reporting notebook with best model results.
 
-***
+---
 
 **Built by Cameron Bridgwater | The Knowledge House Data Analytics Fellow | NYC | April 2026**
-
-***
