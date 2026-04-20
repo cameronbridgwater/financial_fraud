@@ -62,7 +62,7 @@ These files represent the main stages of the project workflow, from exploration 
 | **Some transaction types are more suspicious** | Type is likely a strong predictor |
 | **Balance features are highly correlated** | Multicollinearity may matter for linear models |
 | **Extreme transaction amounts matter** | Large values may help identify fraud |
-| **Fraud-focused subsets can be useful** | TRANSFER and CASH_OUT may contain the clearest signal |
+| **Fraud-focused subsets can be useful** | `TRANSFER` and `CASH_OUT` may contain the clearest signal |
 
 ## 📁 Project Structure
 
